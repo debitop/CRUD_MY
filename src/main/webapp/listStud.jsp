@@ -29,7 +29,7 @@
             <td><c:out value="${student.studId}"></c:out></td>
             <td><c:out value="${student.firstName}"></c:out></td>
             <td><c:out value="${student.lastName}"></c:out></td>
-            <td><c:out value="${student.email}"></c:out></td>
+            <td><c:out value="${student.tel}"></c:out></td>
             <td><c:out value="${student.dob}"></c:out></td>
             <td><a href="/StudentController?action=delete&studId=${student.studId}">delete</a></td>
             <td><a href="/StudentController?action=edit&studId=${student.studId}">edit</a></td>

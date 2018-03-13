@@ -7,7 +7,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private Date dob;
-    private String email;
+    private String tel;
 
 
     public int getStudId() {
@@ -42,12 +42,12 @@ public class Student {
         this.dob = dob;
     }
 
-    public String getEmail() {
-        return email;
+    public String getTel() {
+        return tel;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 }
 

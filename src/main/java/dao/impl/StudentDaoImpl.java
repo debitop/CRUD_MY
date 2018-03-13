@@ -26,7 +26,7 @@ public class StudentDaoImpl implements StudentDao {
                 student.setDob(rs.getDate("dob"));
                 student.setFirstName(rs.getString("firstname"));
                 student.setLastName(rs.getString("lastname"));
-                student.setEmail(rs.getString("tel"));
+                student.setTel(rs.getString("tel"));
                 student.setStudId(rs.getInt("id"));
                 list.add(student);
             }
@@ -45,8 +45,8 @@ public class StudentDaoImpl implements StudentDao {
                     .prepareStatement("UPDATE students SET firstname=?, lastname=?,tel=?, dob=? WHERE id=?");
             ps.setString(1, student.getFirstName());
             ps.setString(2, student.getLastName());
-            ps.setString(3, student.getEmail());
-            ps.setDate(4, (Date) student.getDob()); // (4, new Date (student.getDob().getTime()))
+            ps.setString(3, student.getTel());
+            ps.setDate(4, new Date(student.getDob().getTime()) ); // (4, new Date (student.getDob().getTime()))
             ps.setInt(5, student.getStudId());
             ps.execute();
         } catch (SQLException e) {
@@ -74,8 +74,8 @@ public class StudentDaoImpl implements StudentDao {
                     .prepareStatement("INSERT INTO students(firstname, lastname, tel, dob) VALUES (?,?,?,?)");
             ps.setString(1, student.getFirstName());
             ps.setString(2, student.getLastName());
-            ps.setString(3, student.getEmail());
-            ps.setDate(4, (Date) student.getDob()); // (4, new Date (student.getDob().getTime()))
+            ps.setString(3, student.getTel());
+            ps.setDate(4, new Date(student.getDob().getTime())); // (4, new Date (student.getDob().getTime()))
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,11 +89,12 @@ public class StudentDaoImpl implements StudentDao {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM students WHERE id=?");
             ps.setInt(1, studId);
             ResultSet rs = ps.executeQuery();
-            student.setEmail(rs.getString("tel"));
+            if (rs.next()){
+            student.setTel(rs.getString("tel"));
             student.setLastName(rs.getString("lastname"));
             student.setFirstName(rs.getString("firstname"));
             student.setDob(rs.getDate("dob"));
-            student.setStudId(studId);
+            student.setStudId(studId);}
         } catch (SQLException e) {
             e.printStackTrace();
         }

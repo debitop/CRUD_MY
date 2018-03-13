@@ -12,8 +12,12 @@
 </head>
 <body>
 <form method="post" action="/StudentController">
-    id: <input readonly name="studId" value="">
-
+    id: <input readonly name="studId" value="${student.studId}"><br>
+    firsname: <input name="firstName" value="${student.firstName}"><br>
+    lastname: <input name="lastName" value="${student.lastName}"><br>
+    tel : <input name="tel" value="${student.tel}"><br>
+    date : <input name="dob" value="${student.dob}"><br>
+    <p><input type="submit" value="OK"></p>
 </form>
 </body>
 </html>
