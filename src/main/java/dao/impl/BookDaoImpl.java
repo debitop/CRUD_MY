@@ -20,18 +20,20 @@ public class BookDaoImpl implements BookDao {
     }
 
     public void addBook(Book book) {
-
-        try {
-            PreparedStatement ps = connection
-                    .prepareStatement("INSERT INTO books (userid, author, title) VALUES (?,?,?)");
-            ps.setInt(1, book.getStudentId());
-            ps.setString(2, book.getAuthor());
-            ps.setString(3, book.getName());
-            ps.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (book != null) {
+            try {
+                PreparedStatement ps = connection
+                        .prepareStatement("INSERT INTO books (userid, author, title) VALUES (?,?,?)");
+                ps.setInt(1, book.getStudentId());
+                ps.setString(2, book.getAuthor());
+                ps.setString(3, book.getName());
+                ps.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            throw new RuntimeException("Book is null.");
         }
-
     }
 
     public void delBook(int bookId) {
@@ -69,7 +71,7 @@ public class BookDaoImpl implements BookDao {
                 Book book = new Book();
                 book.setAuthor(rs.getString("author"));
                 book.setName(rs.getString("title"));
-                book.setBookId(rs.getInt("bookId"));
+                book.setBookId(rs.getInt("id"));
                 book.setStudentId(userId);
                 list.add(book);
             }

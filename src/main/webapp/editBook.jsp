@@ -12,5 +12,13 @@
 </head>
 <body>
 
+<form method="post" action="/BookController">
+   book id: <input type="text" value="${book.bookId}" readonly name="bookId"><br>
+    stud id: <input type="text" value="${studId}" name="studId" readonly><br>
+    author: <input type="text" value="${book.author}" name="author"><br>
+    name: <input type="text" value="${book.name}" name="name"><br>
+    <p><input type="submit" value="submit"></p><br>
+</form>
+
 </body>
 </html>
